@@ -21,7 +21,7 @@ public class OperatorEx3 {
 				if(balance+b<100000) {
 					balance += b;
 				}else {
-					System.out.println("허용범위를 초과했습니다");
+					System.out.println("현재 balance는"+balance+"입니다"+b+"는 추가할 수 없습니다");
 				}
 				
 			}else if(menu==2) {
@@ -30,7 +30,7 @@ public class OperatorEx3 {
 				if(balance-b>0) {
 					balance -= b;
 				}else {
-					System.out.println("허용범위를 초과했습니다");
+					System.out.println("현재 balance는"+balance+"입니다"+b+"는 차감할 수 없습니다");
 				}
 			}else if(menu==3) {
 				System.out.println(balance);
