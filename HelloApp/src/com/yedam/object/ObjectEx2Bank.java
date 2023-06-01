@@ -19,7 +19,20 @@ public class ObjectEx2Bank {
 					Bank b1 = new Bank();
 					System.out.println("등록할 계좌번호를 적어주세요");
 					String selectNum = sc.nextLine();
-					if (accounts[i] == null) {
+					if (i !=0) {
+						boolean check = false;
+						for(int a=0;a<i;a++) {
+							if(accounts[a].accountNo.equals(selectNum)) {
+								check=true;
+								System.out.println("중복값입니다");
+							}
+						}
+						if(check) {
+							i--;
+							continue;
+						}
+					}
+						
 						b1.accountNo = selectNum;
 						System.out.println("예금주를 적어주세요");
 						String selectWho = sc.nextLine();
@@ -27,7 +40,6 @@ public class ObjectEx2Bank {
 						System.out.println("잔고를 적어주세요");
 						int selectMon = Integer.parseInt(sc.nextLine());
 						b1.balance = selectMon;
-					}
 					accounts[i] = b1;
 				}
 
