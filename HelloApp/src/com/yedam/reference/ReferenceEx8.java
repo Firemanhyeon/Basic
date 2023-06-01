@@ -22,7 +22,7 @@ public class ReferenceEx8 {
 		s2.mathScore= 75;
 		
 		Student1 s3 = new Student1();	
-		s3.name = "박길동";
+		s3.name = "박길동"; 
 		s3.engScore=83;
 		s3.mathScore= 55;
 		

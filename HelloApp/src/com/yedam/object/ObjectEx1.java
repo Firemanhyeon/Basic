@@ -38,16 +38,30 @@ public class ObjectEx1 {
 		}
 
 		// memberId 조회 후 point를 변경
-		
+		boolean run = true;
+			while(run) {
 			System.out.println("조회할 아이디를 입력하세요");
 			String searchId = sc.nextLine();
-
+			for(int i=0; i <members.length;i++) {
+				if(searchId.equals(members[i].memberId)) {
+					System.out.println("확인완료");
+					run=false;
+					
+					
+				}
+			}
+			if(run==true) {
+				System.out.println("등록되지않은 아이디입니다");
+				continue;
+				
+			}
 			System.out.println("변경할 point를 입력하세요");
 			int newPoint = Integer.parseInt(sc.nextLine());
 
 			for (int i = 0; i < members.length; i++) {
 				if (members[i].memberId.equals(searchId)) {
 					members[i].point = newPoint;
+				}
 
 				}
 			}
