@@ -1,6 +1,7 @@
 package com.yedam.object;
 
 public class Student {
+
 	public String getStudentid() {
 		return studentid;
 	}

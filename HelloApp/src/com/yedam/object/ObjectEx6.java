@@ -12,28 +12,51 @@ public class ObjectEx6 {
 	// 학생정보 : 학생번호(23-001) / 이름 /성별 /점수 /
 	// student class 생성 후 필드 4개 타입별로 생성
 
+	// 학생번호 유무메소드
+	public static boolean checkAccount(String stuid) {
+		boolean isExist = false;
+		for (int i = 0; i < accounts.length; i++) {
+			if (accounts[i] != null //
+					&& accounts[i].getStudentid().equals(stuid)) {
+				isExist = true;
+				break;
+			}
+		}
+		return isExist;
+	}
+
 	// 등록메소드
 	public static void register() {
-		System.out.println("학생 번호를 입력하세요");
-		String stuid = sc.nextLine();
-		System.out.println("이름을 입력하세요");
-		String name = sc.nextLine();
-		System.out.println("성별을 입력하세요 ");
-		String ox = sc.nextLine();
-		System.out.println("점수를 입력하세요");
-		int score = Integer.parseInt(sc.nextLine());
+		boolean run1 = true;
+		while (run1) {
 
-		Student student = new Student();
-		student.setStudentid(stuid);
-		student.setName(name);
-		student.setOx(ox);
-		student.setScore(score);
+			System.out.println("학생 번호를 입력하세요");
+			String stuid = sc.nextLine();
+			if (checkAccount(stuid)) {
+				System.out.println("중복");
+				continue;
+			} else {
+				System.out.println("이름을 입력하세요");
+				String name = sc.nextLine();
+				System.out.println("성별을 입력하세요 ");
+				String ox = sc.nextLine();
+				System.out.println("점수를 입력하세요");
+				int score = Integer.parseInt(sc.nextLine());
 
-		for (int i = 0; i < accounts.length; i++) {
-			if (accounts[i] == null) {
-				accounts[i] = student;
-				System.out.println("정상적으로 등록");
-				break;
+				Student student = new Student();
+				student.setStudentid(stuid);
+				student.setName(name);
+				student.setOx(ox);
+				student.setScore(score);
+
+				for (int i = 0; i < accounts.length; i++) {
+					if (accounts[i] == null) {
+						accounts[i] = student;
+						System.out.println("정상적으로 등록");
+						break;
+					}
+				}
+				run1 = false;
 			}
 		}
 	}
@@ -55,7 +78,8 @@ public class ObjectEx6 {
 					max = accounts[i].getScore();
 					maxname = accounts[i].getName();
 				}
-				System.out.printf("학번 : %s 이름: %s 점수: %d \n",accounts[i].getStudentid(),accounts[i].getName(),accounts[i].getScore());
+				System.out.printf("학번 : %s 이름: %s 점수: %d \n", accounts[i].getStudentid(), accounts[i].getName(),
+						accounts[i].getScore());
 			}
 		}
 		System.out.printf("남학생 : %d 여학생 : %d , 최고점수: %s - %d \n", man, wom, maxname, max);
@@ -80,36 +104,54 @@ public class ObjectEx6 {
 			}
 		}
 	}
-	//수정메소드
+
+	// 수정메소드
 	public static void modify() {
 		System.out.println("수정할 학생의 학생번호를 적어주세요");
+		String account = sc.nextLine();
+		if (checkAccount(account)) {
+			for (int i = 0; i < accounts.length; i++) {
+				if (accounts[i] != null) {
+					if (accounts[i].getStudentid().equals(account)) {
+						System.out.println("수정할 점수를 입력하세요");
+						int account1 = Integer.parseInt(sc.nextLine());
+						accounts[i].setScore(account1);
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("아이디가 없습니다");
+			return;
+		}
+	}
+
+//		boolean isExist = false;
+//		for (int i = 0; i < accounts.length; i++) {
+//			if (accounts[i] != null) {
+//				if (accounts[i].getStudentid().equals(account)) {
+//					System.out.println("수정할 점수를 입력하세요");
+//					int account1 = Integer.parseInt(sc.nextLine());
+//					accounts[i].setScore(account1);
+//					System.out.println("수정완료했습니다");
+//					isExist = true;
+//				}
+//				if (isExist == false) {
+//					System.out.println("등록되지않은 학생번호입니다");
+//				}
+//			}
+//		}
+//	}
+	// 삭제메소드
+	public static void remove() {
+		System.out.println("삭제할 학생의 번호를 입력하세요");
 		String account = sc.nextLine();
 		boolean isExist = false;
 		for (int i = 0; i < accounts.length; i++) {
 			if (accounts[i] != null) {
 				if (accounts[i].getStudentid().equals(account)) {
-					System.out.println("수정할 점수를 입력하세요");
-					int account1 = Integer.parseInt(sc.nextLine());
-					accounts[i].setScore(account1);
-					System.out.println("수정완료했습니다");
+					accounts[i] = null;
 					isExist = true;
-				}
-				if (isExist == false) {
-					System.out.println("등록되지않은 학생번호입니다");
-				}
-			}
-		}
-	}
-	//삭제메소드
-	public static void remove() {
-		System.out.println("삭제할 학생의 번호를 입력하세요");
-		String account = sc.nextLine();
-		boolean isExist=false;
-		for(int i = 0 ; i <accounts.length; i++) {
-			if(accounts[i] != null) {
-				if(accounts[i].getStudentid().equals(account)) {
-					accounts[i]=null;
-					isExist = true; 
 				}
 			}
 			if (isExist == false) {
@@ -117,6 +159,7 @@ public class ObjectEx6 {
 			}
 		}
 	}
+
 	public static void main(String[] args) {
 		// 메소드
 		// 등록메소드 1. register()
