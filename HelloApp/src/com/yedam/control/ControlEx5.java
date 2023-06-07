@@ -1,4 +1,4 @@
-package com.yeda.control;
+package com.yedam.control;
 
 public class ControlEx5 {
 

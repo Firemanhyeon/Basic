@@ -1,5 +1,5 @@
 
-package com.yeda.control;
+package com.yedam.control;
 
 import java.util.Scanner;
 
